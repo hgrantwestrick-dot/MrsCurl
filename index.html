@@ -182,6 +182,12 @@
       color:var(--white); font-size:1.4rem; margin-bottom:.3rem;
     }
     .g-rating-text p { font-size:.9rem; color:rgba(255,255,255,.75); }
+    .g-review-btn-wrap { margin-left:auto; }
+    @media (max-width: 600px) {
+      .g-rating-bar { flex-direction:column; align-items:center; text-align:center; padding:1.2rem 1rem; gap:1rem; }
+      .g-review-btn-wrap { margin-left:0; width:100%; text-align:center; }
+      .g-rating-text h3, .g-rating-text p { text-align:center; }
+    }
   </style>
 
   <div class="container">
@@ -201,7 +207,7 @@
                 <h3>Greenwood's Sweetest Tradition</h3>
         <p>Loved by locals and visitors alike — over 1,800 five-star moments and counting.</p>
       </div>
-      <div style="margin-left:auto;">
+      <div class="g-review-btn-wrap">
         <a class="btn btn-primary"
            href="https://www.google.com/maps/search/Mrs+Curl+Ice+Cream+Shop+259+S+Meridian+St+Greenwood+IN+46143"
            target="_blank" rel="noopener">Leave a Review</a>
