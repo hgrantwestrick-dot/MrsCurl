@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Photo gallery for Mrs. Curl Ice Cream Shop in Greenwood, Indiana — see our storefront, outdoor café, ice cream, and happy customers."/>
+  <title>Memories | Mrs. Curl Ice Cream Shop</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .filter-bar {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .filter-btn {
+      background: var(--white);
+      border: 2px solid var(--cream-mid);
+      color: var(--gray);
+      padding: .4rem 1.1rem;
+      border-radius: 99px;
+      font-size: .85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: var(--white);
+    }
+
+    /* lightbox overlay */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      color: white; font-size: 2rem;
+      cursor: pointer; background: none; border: none;
+      line-height: 1;
+    }
+    .lightbox-caption {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.6);
+      color: white; padding: .5rem 1.2rem;
+      border-radius: 99px; font-size: .88rem;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<!-- BRANDED HEADER -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="header-content">
+      <div class="header-title-row">
+        <img src="images/bear.svg.PNG" class="header-mascot" alt="Mrs. Curl Mascot"/>
+        <div class="header-titles">
+        <span class="header-name">Mrs. Curl</span>
+        <div class="header-subtitle">
+          <span class="big">Ice Cream Shop</span>
+          <span class="small">and Outdoor Caf&eacute;</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-hours">
+      <span class="hours-open">Open 7 Days a Week!</span>
+      <span class="hours-label">Summer Hours:</span>
+      <span class="hours-main">Sun&ndash;Thu 11am&ndash;9pm* &nbsp;&bull;&nbsp; Fri &amp; Sat 11am&ndash;10pm</span>
+      <span class="hours-note">*Open until 10pm every night through June &amp; July</span>
+        </div>
+      </div>
+    </div>
+</header>
+
+<nav class="site-nav">
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="photogallery.html" class="active">Memories</a></li>
+    <li><a href="icecreamtruck.html">Ice Cream Truck</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Memories in the Making</span>
+    <h1>Memories</h1>
+    <p>Sixty years of smiles, scoops, and summer moments — all in one place.</p>
+  </div>
+</header>
+
+<div class="checker-strip teal"></div>
+<section class="section section-alt">
+  <div class="container">
+    <span class="section-label">Our Gallery</span>
+    <h2 class="section-title">A Scoop of Nostalgia</h2>
+    <div class="divider"></div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="mrscurl" onclick="filterGallery(this,'mrscurl')">Mrs. Curl</button>
+      <button class="filter-btn" data-filter="seating" onclick="filterGallery(this,'seating')">Seating</button>
+      <button class="filter-btn" data-filter="lake" onclick="filterGallery(this,'lake')">Lake</button>
+      <button class="filter-btn" data-filter="food" onclick="filterGallery(this,'food')">Ice Cream &amp; Food</button>
+    </div>
+
+    <div class="gallery-grid" id="gallery">
+
+      <!-- Mrs. Curl -->
+      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/Curl 1.webp','Mrs. Curl Sign')">
+        <img src="images/Curl 1.webp" alt="Mrs. Curl Sign"/>
+        <div class="gallery-caption">Mrs. Curl Sign</div>
+      </div>
+      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (1).webp','Storefront')">
+        <img src="images/unnamed (1).webp" alt="Mrs. Curl Storefront"/>
+        <div class="gallery-caption">Storefront</div>
+      </div>
+      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (2).webp','Mrs. Curl Exterior')">
+        <img src="images/unnamed (2).webp" alt="Mrs. Curl Exterior"/>
+        <div class="gallery-caption">Exterior</div>
+      </div>
+      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (5).webp','Mrs. Curl from the Street')">
+        <img src="images/unnamed (5).webp" alt="Mrs. Curl from the Street"/>
+        <div class="gallery-caption">From the Street</div>
+      </div>
+      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (6).webp','Jukebox Wall Art')">
+        <img src="images/unnamed (6).webp" alt="Jukebox Wall Art"/>
+        <div class="gallery-caption">Jukebox Wall Art</div>
+      </div>
+      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (12).webp','A Busy Day at Mrs. Curl')">
+        <img src="images/unnamed (12).webp" alt="Busy Day at Mrs. Curl"/>
+        <div class="gallery-caption">A Busy Day</div>
+      </div>
+      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (14).webp','Mrs. Curl Mascot Sign')">
+        <img src="images/unnamed (14).webp" alt="Mrs. Curl Mascot Sign"/>
+        <div class="gallery-caption">Our Sign</div>
+      </div>
+
+      <!-- Seating -->
+      <div class="gallery-item" data-cat="seating" style="display:none" onclick="openLightbox('images/Gazibo.webp','The Gazebo')">
+        <img src="images/Gazibo.webp" alt="The Gazebo"/>
+        <div class="gallery-caption">The Gazebo</div>
+      </div>
+      <div class="gallery-item" data-cat="seating" style="display:none" onclick="openLightbox('images/curl 2.webp','Covered Seating Area')">
+        <img src="images/curl 2.webp" alt="Covered Seating Area"/>
+        <div class="gallery-caption">Covered Seating</div>
+      </div>
+      <div class="gallery-item" data-cat="seating" style="display:none" onclick="openLightbox('images/unnamed (9).webp','Outdoor Tables')">
+        <img src="images/unnamed (9).webp" alt="Outdoor Tables"/>
+        <div class="gallery-caption">Outdoor Tables</div>
+      </div>
+      <div class="gallery-item" data-cat="seating" style="display:none" onclick="openLightbox('images/unnamed (10).webp','Garden Pergola')">
+        <img src="images/unnamed (10).webp" alt="Garden Pergola"/>
+        <div class="gallery-caption">Garden Pergola</div>
+      </div>
+      <div class="gallery-item" data-cat="seating" style="display:none" onclick="openLightbox('images/unnamed (13).webp','Family Seating Area')">
+        <img src="images/unnamed (13).webp" alt="Family Seating Area"/>
+        <div class="gallery-caption">Family Seating</div>
+      </div>
+
+      <!-- Lake -->
+      <div class="gallery-item" data-cat="lake" style="display:none" onclick="openLightbox('images/unnamed.webp','The Stream &amp; Garden')">
+        <img src="images/unnamed.webp" alt="The Stream and Garden"/>
+        <div class="gallery-caption">The Stream &amp; Garden</div>
+      </div>
+      <div class="gallery-item" data-cat="lake" style="display:none" onclick="openLightbox('images/unnamed (4).webp','Ducks on the Stream')">
+        <img src="images/unnamed (4).webp" alt="Ducks on the Stream"/>
+        <div class="gallery-caption">Ducks on the Stream</div>
+      </div>
+
+      <!-- Ice Cream & Food -->
+      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/unnamed (7).webp','Flavor Burst Soft Serve')">
+        <img src="images/unnamed (7).webp" alt="Flavor Burst Soft Serve"/>
+        <div class="gallery-caption">Flavor Burst Soft Serve</div>
+      </div>
+      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/Flavor Burst Waffle Cone.webp','Flavor Burst Waffle Cone')">
+        <img src="images/Flavor Burst Waffle Cone.webp" alt="Flavor Burst Waffle Cone"/>
+        <div class="gallery-caption">Flavor Burst Waffle Cone</div>
+      </div>
+      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/Twist Cone and Chocolate Dipped Cone.webp','Twist &amp; Chocolate Dipped')">
+        <img src="images/Twist Cone and Chocolate Dipped Cone.webp" alt="Twist and Chocolate Dipped Cone"/>
+        <div class="gallery-caption">Twist &amp; Chocolate Dipped</div>
+      </div>
+      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/Upside down Chocolate Dipped Cone.webp','Upside Down Dipped Cone')">
+        <img src="images/Upside down Chocolate Dipped Cone.webp" alt="Upside Down Chocolate Dipped Cone"/>
+        <div class="gallery-caption">Upside Down Dipped Cone</div>
+      </div>
+      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/Crunch Cone.webp','Crunch Cone')">
+        <img src="images/Crunch Cone.webp" alt="Crunch Cone"/>
+        <div class="gallery-caption">Crunch Cone</div>
+      </div>
+      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/Birthday Cake Razzle.webp','Birthday Cake Razzle')">
+        <img src="images/Birthday Cake Razzle.webp" alt="Birthday Cake Razzle"/>
+        <div class="gallery-caption">Birthday Cake Razzle</div>
+      </div>
+      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/M&M Razzle.webp','M&amp;M Razzle')">
+        <img src="images/M&M Razzle.webp" alt="M&M Razzle"/>
+        <div class="gallery-caption">M&amp;M Razzle</div>
+      </div>
+      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/unnamed (3).webp','Ice Cream Sundae')">
+        <img src="images/unnamed (3).webp" alt="Ice Cream Sundae"/>
+        <div class="gallery-caption">Ice Cream Sundae</div>
+      </div>
+      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/unnamed (11).webp','Malts, Shakes &amp; Sundaes')">
+        <img src="images/unnamed (11).webp" alt="Malts Shakes and Sundaes"/>
+        <div class="gallery-caption">Malts, Shakes &amp; Sundaes</div>
+      </div>
+      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/unnamed (8).webp','Fresh-Cut Fries')">
+        <img src="images/unnamed (8).webp" alt="Fresh-Cut Fries"/>
+        <div class="gallery-caption">Fresh-Cut Fries</div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;margin-top:2.5rem;color:var(--gray);font-size:.9rem;">
+      Have a great photo from your visit? Tag us or send it to <a href="mailto:minicurlevents@gmail.com">minicurlevents@gmail.com</a> and we may feature it here!
+    </p>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">&times;</button>
+  <img id="lightbox-img" src="" alt=""/>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<div class="info-strip">
+  <div class="info-grid">
+    <div class="info-item"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><strong>Open March &ndash; Oct.</strong><span>Seasonal hours</span></div>
+    <div class="info-item"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><strong>259 S. Meridian St.</strong><span>Greenwood, IN 46143</span></div>
+    <div class="info-item"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 17.92z"/></svg></div><strong>Call Us</strong><span><a href="tel:3178821031">(317) 882-1031</a></span></div>
+    <div class="info-item"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><strong>Share Your Visit</strong><span>Tag #MrsCurlGreenwood</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">Mrs. Curl Ice Cream Shop &amp; Outdoor Café</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a>
+    <a href="photogallery.html">Memories</a>
+    <a href="icecreamtruck.html">Ice Cream Truck</a><a href="contact.html">Contact</a>
+  </div>
+  <p>259 S. Meridian Street, Greenwood, IN 46143 &bull; <a href="tel:3178821031">(317) 882-1031</a></p>
+  <p class="copy">&copy; 2026 Mrs. Curl Ice Cream Shop. All rights reserved.</p></footer>
+
+<script>
+  function filterGallery(btn, cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.style.display = item.dataset.cat === cat ? '' : 'none';
+    });
+  }
+  function openLightbox(src, caption) {
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-caption').textContent = caption;
+    lb.classList.add('open');
+  }
+  function closeLightbox(e) {
+    if (e.target === document.getElementById('lightbox')) {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+  });
+</script>
+<script defer src="animations.js"></script>
+<script>
+  // Nav shadow on scroll
+  (function(){
+    var nav = document.querySelector('.site-nav');
+    if (!nav) return;
+    window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 10); }, {passive:true});
+  })();
+</script><script src="chatbot.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

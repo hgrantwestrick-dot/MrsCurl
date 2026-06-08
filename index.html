@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Mrs. Curl Ice Cream Shop & Outdoor Café — Serving Greenwood, Indiana since 1962. Soft-serve, handspun shakes, grilled favorites, and more."/>
+  <title>Mrs. Curl Ice Cream Shop — Greenwood, IN</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- BRANDED HEADER -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="header-content">
+      <div class="header-title-row">
+        <img src="images/bear.svg.PNG" class="header-mascot" alt="Mrs. Curl Mascot"/>
+        <div class="header-titles">
+        <span class="header-name">Mrs. Curl</span>
+        <div class="header-subtitle">
+          <span class="big">Ice Cream Shop</span>
+          <span class="small">and Outdoor Caf&eacute;</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-hours">
+      <span class="hours-open">Open 7 Days a Week!</span>
+      <span class="hours-label">Summer Hours:</span>
+      <span class="hours-main">Sun&ndash;Thu 11am&ndash;9pm* &nbsp;&bull;&nbsp; Fri &amp; Sat 11am&ndash;10pm</span>
+      <span class="hours-note">*Open until 10pm every night through June &amp; July</span>
+        </div>
+      </div>
+    </div>
+</header>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="photogallery.html">Memories</a></li>
+    <li><a href="icecreamtruck.html">Ice Cream Truck</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero" style="min-height:540px;">
+  <div class="hero-bg" style="background-image:url('https://www.mrscurl.com/images/storefront.jpg');"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Est. 1962 &mdash; Greenwood, Indiana</span>
+    <h1>Simply the Best Ice Cream in Greenwood</h1>
+    <p>Hand-spun shakes, signature soft-serve, and outdoor favorites — served fresh for over 60 years at the heart of downtown Greenwood.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="menu.html">View Our Menu</a>
+      <a class="btn btn-outline" href="contact.html">Find Us</a>
+    </div>
+    <div class="header-hours">
+      <span class="hours-open">Open 7 Days a Week!</span>
+      <span class="hours-label">Summer Hours:</span>
+      <span class="hours-main">Sun&ndash;Thu 11am&ndash;9pm* &nbsp;&bull;&nbsp; Fri &amp; Sat 11am&ndash;10pm</span>
+      <span class="hours-note">*Open until 10pm every night through June &amp; July</span>
+        </div>
+      </div>
+    </div>
+</header>
+
+<div class="checker-strip teal"></div>
+
+<!-- ABOUT BLURB -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2" style="align-items:center;gap:3.5rem;">
+      <div data-animate="slide-left">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">A Greenwood Tradition Since 1962</h2>
+        <div class="divider"></div>
+        <p style="margin-bottom:1rem;color:var(--gray);">
+          What started as a hand-built dream by Jim Davis over 60 years ago has grown into one of
+          Greenwood's most beloved institutions. Nestled near Main and Meridian Streets in downtown
+          Greenwood, Mrs. Curl has been the sweet destination for families across Johnson County
+          for generations.
+        </p>
+        <p style="margin-bottom:1.5rem;color:var(--gray);">
+          Open every March through October, we serve the finest in desserts and outdoor fare — from
+          our signature soft-serve to grilled hot dogs and fresh-cut fries enjoyed at our outdoor
+          café beside a peaceful stream.
+        </p>
+        <a class="btn btn-teal" href="about.html">Read Our Full Story</a>
+      </div>
+      <div data-animate="slide-right">
+        <img src="https://www.mrscurl.com/images/storeside.jpg"
+             alt="Mrs. Curl storefront"
+             style="border:4px solid var(--chocolate);box-shadow:var(--shadow-lg);width:100%;border-radius:3px;filter:sepia(.08) contrast(1.04);"
+             onerror="this.style.cssText='background:var(--cream-mid);min-height:300px;width:100%;border:4px solid var(--chocolate);display:block;border-radius:3px;'"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker-strip gold"></div>
+
+<!-- GOOGLE REVIEWS CAROUSEL -->
+<section class="section" style="background:var(--chocolate);" id="reviews">
+  <style>
+    .carousel-wrap { position: relative; }
+    .carousel-track-outer { overflow: hidden; border-radius: 3px; }
+    .carousel-track {
+      display: flex; gap: 1.5rem;
+      transition: transform .42s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+    .carousel-slide { flex: 0 0 calc(33.333% - 1rem); min-width: 0; }
+    @media (max-width: 860px) { .carousel-slide { flex: 0 0 calc(50% - .75rem); } }
+    @media (max-width: 560px) { .carousel-slide { flex: 0 0 100%; } }
+
+    .c-review-card {
+      background: var(--cream); border: 3px solid var(--gold);
+      border-radius: 3px; padding: 1.6rem 1.6rem 1.4rem;
+      box-shadow: 4px 4px 0 rgba(0,0,0,.4);
+      height: 100%; display: flex; flex-direction: column; position: relative;
+    }
+    .c-stars { color:#FBBC05; font-size:1rem; margin-bottom:.7rem; letter-spacing:1px; }
+    .c-review-text {
+      font-size: .93rem; color: var(--text);
+      font-style: italic; line-height: 1.65; flex: 1; margin-bottom: 1.2rem;
+    }
+    .c-reviewer { display:flex; align-items:center; gap:.75rem; }
+    .c-avatar {
+      width:38px; height:38px; border-radius:50%;
+      background: var(--teal); color:var(--white);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900; font-size:.85rem; flex-shrink:0;
+      border: 2px solid var(--chocolate);
+    }
+    .c-reviewer strong { display:block; font-size:.88rem; font-family:'Bebas Neue'; letter-spacing:1px; color:var(--chocolate); }
+    .c-reviewer span   { font-size:.76rem; color:var(--gray); }
+
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px; border-radius: 2px;
+      background: var(--gold); border: 3px solid var(--chocolate);
+      color: var(--chocolate); font-size: 1.1rem; font-weight: 900; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 3px 3px 0 var(--chocolate);
+      transition: transform .12s, box-shadow .12s; z-index: 10;
+    }
+    .carousel-btn:hover { transform: translateY(-50%) translate(2px,2px); box-shadow: 1px 1px 0 var(--chocolate); }
+    .carousel-btn.prev { left: -24px; }
+    .carousel-btn.next { right: -24px; }
+    @media (max-width: 600px) { .carousel-btn.prev { left: 0; } .carousel-btn.next { right: 0; } }
+
+    .carousel-dots { display:flex; gap:.5rem; justify-content:center; margin-top:1.5rem; }
+    .carousel-dot {
+      width:10px; height:10px; border-radius:2px;
+      background: rgba(255,255,255,.25); border: 2px solid var(--gold);
+      cursor:pointer; transition: background .2s, transform .2s; padding:0;
+    }
+    .carousel-dot.active { background: var(--gold); transform: scale(1.2); }
+
+    .g-rating-bar {
+      display: flex; align-items: center; gap: 2rem;
+      background: rgba(255,255,255,.08); border: 3px solid var(--gold);
+      border-radius: 3px; padding: 1.4rem 2rem;
+      box-shadow: 4px 4px 0 rgba(0,0,0,.3);
+      margin-bottom: 2.5rem; flex-wrap: wrap;
+    }
+    .g-rating-big { text-align:center; flex-shrink:0; }
+    .g-rating-big .score {
+      font-family:'Bebas Neue',sans-serif; letter-spacing:2px;
+      font-size: 3.5rem; color: var(--gold); line-height:1;
+    }
+    .g-rating-big .g-stars { color:#FBBC05; font-size:1.1rem; margin:.2rem 0; }
+    .g-rating-big p { font-size:.78rem; color:rgba(255,255,255,.7); }
+    .g-rating-text h3 {
+      font-family:'Bebas Neue',sans-serif; letter-spacing:2px;
+      color:var(--white); font-size:1.4rem; margin-bottom:.3rem;
+    }
+    .g-rating-text p { font-size:.9rem; color:rgba(255,255,255,.75); }
+  </style>
+
+  <div class="container">
+    <div style="text-align:center;margin-bottom:1.5rem;">
+      <span class="section-label on-dark">Google Reviews</span>
+      <h2 class="section-title on-dark" style="text-align:center;">What Our Customers Say</h2>
+      <div class="divider center" style="color:var(--gold);"></div>
+    </div>
+
+    <div class="g-rating-bar" data-animate="fade-up">
+      <div class="g-rating-big">
+        <div class="score">4.5</div>
+        <div class="g-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <p>1,867 Google reviews</p>
+      </div>
+      <div class="g-rating-text">
+                <h3>Greenwood's Sweetest Tradition</h3>
+        <p>Loved by locals and visitors alike — over 1,800 five-star moments and counting.</p>
+      </div>
+      <div style="margin-left:auto;">
+        <a class="btn btn-primary"
+           href="https://www.google.com/maps/search/Mrs+Curl+Ice+Cream+Shop+259+S+Meridian+St+Greenwood+IN+46143"
+           target="_blank" rel="noopener">Leave a Review</a>
+      </div>
+    </div>
+
+    <div class="carousel-wrap">
+      <button class="carousel-btn prev" onclick="moveCarousel(-1)" aria-label="Previous">&#8592;</button>
+      <div class="carousel-track-outer">
+        <div class="carousel-track" id="reviewTrack">
+
+          <div class="carousel-slide">
+            <div class="c-review-card">
+              <div class="c-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="c-review-text">"This place is worth the stop! The staff are extremely friendly and good at their job. The ice cream choices are almost endless — the way they blend the flavors is over the top delicious!! It makes you want to come back every day to try another combination. If you dream of a flavor, you can get it here."</p>
+              <div class="c-reviewer">
+                <div class="c-avatar">KG</div>
+                <div><strong>Kimberly Gooden</strong><span>Local Guide &bull; Google</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="c-review-card">
+              <div class="c-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="c-review-text">"Delicious soft serve with tons of different options from a favorite local small business. My recommendation is the black cherry vanilla flavor burst on a waffle cone. I've also tried the blueberry vanilla flavor burst — tastes like natural blueberry!"</p>
+              <div class="c-reviewer">
+                <div class="c-avatar">K</div>
+                <div><strong>Kelia</strong><span>Local Guide &bull; Google</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="c-review-card">
+              <div class="c-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="c-review-text">"Great price and great ice cream!!! Been going here for years. You might have to wait in line but they serve you so fast!! Great place to go with the kids and grandkids — or take a date."</p>
+              <div class="c-reviewer">
+                <div class="c-avatar">DD</div>
+                <div><strong>Douglas Day</strong><span>Local Guide &bull; Google</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="c-review-card">
+              <div class="c-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="c-review-text">"It's always busy but worth the wait. Vast selection of ice cream and food items, good prices and nice scenery! Got a large pineapple/peach swirl — it was awesome!"</p>
+              <div class="c-reviewer">
+                <div class="c-avatar">CB</div>
+                <div><strong>Christine Buchler</strong><span>Local Guide &bull; Google</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="c-review-card">
+              <div class="c-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="c-review-text">"We loved the patio seating and the super nice park across the street with a great playground. We loved feeding the fish, muskrats and ducks with the provided fish food in the stream. Good ice cream at a reasonable price — no wonder the line was long! This might be my new favorite Indiana ice cream spot."</p>
+              <div class="c-reviewer">
+                <div class="c-avatar">MK</div>
+                <div><strong>Matt K</strong><span>Local Guide &bull; Google</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <button class="carousel-btn next" onclick="moveCarousel(1)" aria-label="Next">&#8594;</button>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const track = document.getElementById('reviewTrack');
+  const dotsWrap = document.getElementById('carouselDots');
+  const slides = track.querySelectorAll('.carousel-slide');
+  let current = 0;
+  function visibleCount() {
+    const w = track.parentElement.offsetWidth;
+    if (w < 560) return 1;
+    if (w < 860) return 2;
+    return 3;
+  }
+  function totalPositions() { return Math.max(1, slides.length - visibleCount() + 1); }
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    for (let i = 0; i < totalPositions(); i++) {
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === current ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    }
+  }
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, totalPositions() - 1));
+    track.style.transform = `translateX(-${current * (slides[0].offsetWidth + 24)}px)`;
+    dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+  window.moveCarousel = d => goTo(current + d);
+  buildDots(); goTo(0);
+  window.addEventListener('resize', () => { buildDots(); goTo(0); });
+})();
+</script>
+
+<div class="checker-strip dark"></div>
+
+<!-- SEASONAL CTA -->
+<section class="section section-alt" style="text-align:center;">
+  <div class="container-sm">
+    <span class="section-label" data-animate="fade-in">Open Seasonally</span>
+    <h2 class="section-title" data-animate="fade-up" data-delay="1" style="text-align:center;">Come Visit Us This Season!</h2>
+    <div class="divider center" data-animate="scale-x" data-delay="2"></div>
+    <p style="color:var(--gray);margin-bottom:2rem;" data-animate="fade-up" data-delay="2">
+      We're open March through October. Stop by 259 S. Meridian St. in downtown Greenwood — you'll smell the magic before you see us.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" data-animate="fade-up" data-delay="3">
+      <a class="btn btn-teal" href="menu.html">See Our Menu</a>
+      <a class="btn btn-cherry" href="tel:3178821031">(317) 882-1031</a>
+    </div>
+  </div>
+</section>
+
+<div class="checker-strip teal"></div>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <strong>Open Seasonally</strong>
+      <span>March &ndash; October</span>
+    </div>
+    <div class="info-item">
+      <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <strong>259 S. Meridian St.</strong>
+      <span>Greenwood, IN 46143</span>
+    </div>
+    <div class="info-item">
+      <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 17.92z"/></svg></div>
+      <strong>Call Us</strong>
+      <span><a href="tel:3178821031">(317) 882-1031</a></span>
+    </div>
+    <div class="info-item">
+      <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M8.5 11L12 21l3.5-10"/></svg></div>
+      <strong>Est. 1962</strong>
+      <span>Over 60 years of tradition</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">Mrs. Curl Ice Cream Shop &amp; Outdoor Caf&eacute;</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="menu.html">Menu</a>
+    <a href="photogallery.html">Memories</a>
+    <a href="icecreamtruck.html">Ice Cream Truck</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p>259 S. Meridian Street, Greenwood, IN 46143 &bull; <a href="tel:3178821031">(317) 882-1031</a> &bull; <a href="https://www.greenwood.in.gov/" target="_blank" rel="noopener">Visit Greenwood</a></p>
+  <p class="copy">&copy; 2026 Mrs. Curl Ice Cream Shop. All rights reserved.</p></footer>
+
+<script defer src="animations.js"></script>
+<script>
+  (function(){
+    var nav = document.querySelector('.site-nav');
+    if (!nav) return;
+    window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 10); }, {passive:true});
+  })();
+</script>
+<script src="chatbot.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

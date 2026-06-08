@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Contact Mrs. Curl Ice Cream Shop — 259 S. Meridian Street, Greenwood, IN 46143. Call (317) 882-1031. Open March through October."/>
+  <title>Contact Us | Mrs. Curl Ice Cream Shop</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .contact-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 18px rgba(0,0,0,.08);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+    .contact-icon {
+      width: 52px; height: 52px;
+      background: var(--teal-light);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .contact-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--brown);
+      font-size: 1.05rem;
+      margin-bottom: .3rem;
+    }
+    .contact-card p, .contact-card a {
+      font-size: .93rem;
+      color: var(--gray);
+    }
+    .contact-card a { color: var(--teal); font-weight: 700; }
+    .map-embed {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,.12);
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: .6rem 0;
+      border-bottom: 1px solid var(--cream-mid);
+      font-size: .93rem;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .day { color: var(--brown); font-weight: 700; }
+    .hours-row .time { color: var(--gray); }
+    .hours-row .closed { color: #b83030; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<!-- BRANDED HEADER -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="header-content">
+      <div class="header-title-row">
+        <img src="images/bear.svg.PNG" class="header-mascot" alt="Mrs. Curl Mascot"/>
+        <div class="header-titles">
+        <span class="header-name">Mrs. Curl</span>
+        <div class="header-subtitle">
+          <span class="big">Ice Cream Shop</span>
+          <span class="small">and Outdoor Caf&eacute;</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-hours">
+      <span class="hours-open">Open 7 Days a Week!</span>
+      <span class="hours-label">Summer Hours:</span>
+      <span class="hours-main">Sun&ndash;Thu 11am&ndash;9pm* &nbsp;&bull;&nbsp; Fri &amp; Sat 11am&ndash;10pm</span>
+      <span class="hours-note">*Open until 10pm every night through June &amp; July</span>
+        </div>
+      </div>
+    </div>
+</header>
+
+<nav class="site-nav">
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="photogallery.html">Memories</a></li>
+    <li><a href="icecreamtruck.html">Ice Cream Truck</a></li>
+    <li><a href="contact.html" class="active">Contact Us</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Find Us in Greenwood</span>
+    <h1>Contact Us</h1>
+    <p>We'd love to see you! Stop by our walk-up window or give us a call — we're right in the heart of downtown Greenwood.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="tel:3178821031">Call (317) 882-1031</a>
+      <a class="btn btn-outline" href="https://maps.google.com/?q=259+S+Meridian+St+Greenwood+IN+46143" target="_blank" rel="noopener">Get Directions</a>
+    </div>
+    <div class="header-hours">
+      <span class="hours-open">Open 7 Days a Week!</span>
+      <span class="hours-label">Summer Hours:</span>
+      <span class="hours-main">Sun&ndash;Thu 11am&ndash;9pm* &nbsp;&bull;&nbsp; Fri &amp; Sat 11am&ndash;10pm</span>
+      <span class="hours-note">*Open until 10pm every night through June &amp; July</span>
+        </div>
+      </div>
+    </div>
+</header>
+
+<div class="checker-strip teal"></div>
+<section class="section section-alt">
+  <div class="container">
+    <div class="grid-2" style="gap:3rem;align-items:start;">
+
+      <!-- Contact Info -->
+      <div>
+        <span class="section-label">Get in Touch</span>
+        <h2 class="section-title">Visit, Call, or Write</h2>
+        <div class="divider"></div>
+
+        <div style="display:flex;flex-direction:column;gap:1.2rem;margin-bottom:2.5rem;">
+
+          <div class="contact-card">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <h3>Our Address</h3>
+              <p>259 S. Meridian Street<br/>Greenwood, IN 46143</p>
+              <a href="https://maps.google.com/?q=259+S+Meridian+St+Greenwood+IN+46143" target="_blank" rel="noopener" style="display:inline-block;margin-top:.4rem;">Open in Google Maps &rarr;</a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 17.92z"/></svg></div>
+            <div>
+              <h3>Phone</h3>
+              <p><a href="tel:3178821031">(317) 882-1031</a></p>
+              <p style="margin-top:.2rem;font-size:.83rem;">Available during business hours, March &ndash; October</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div>
+              <h3>Ice Cream Truck Inquiries</h3>
+              <p><a href="mailto:minicurlevents@gmail.com">minicurlevents@gmail.com</a></p>
+              <p style="margin-top:.2rem;font-size:.83rem;">For Mini Curl event booking &amp; catering requests</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+            <div>
+              <h3>Employment</h3>
+              <p>Interested in joining the Mrs. Curl team?</p>
+              <a href="https://www.mrscurl.com/Employment-Application.pdf" target="_blank" rel="noopener" style="display:inline-block;margin-top:.4rem;">Download Application PDF &rarr;</a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div>
+              <h3>City of Greenwood</h3>
+              <p>We're proud to be part of downtown Greenwood.</p>
+              <a href="https://www.greenwood.in.gov/" target="_blank" rel="noopener" style="display:inline-block;margin-top:.4rem;">Visit Greenwood Official Site &rarr;</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Hours + Map -->
+      <div>
+        <h3 style="font-family:'Bebas Neue',sans-serif;color:var(--brown);font-size:1.3rem;margin-bottom:1rem;">Hours of Operation</h3>
+
+        <div style="background:var(--white);border-radius:14px;padding:1.5rem;box-shadow:0 4px 18px rgba(0,0,0,.08);margin-bottom:2rem;">
+          <p style="font-size:.85rem;color:var(--teal);font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;">
+            &#9679; Open Seasonally: March &ndash; October
+          </p>
+          <div class="hours-row"><span class="day">Monday</span><span class="time">11:00 AM &ndash; 9:00 PM</span></div>
+          <div class="hours-row"><span class="day">Tuesday</span><span class="time">11:00 AM &ndash; 9:00 PM</span></div>
+          <div class="hours-row"><span class="day">Wednesday</span><span class="time">11:00 AM &ndash; 9:00 PM</span></div>
+          <div class="hours-row"><span class="day">Thursday</span><span class="time">11:00 AM &ndash; 9:00 PM</span></div>
+          <div class="hours-row"><span class="day">Friday</span><span class="time">11:00 AM &ndash; 10:00 PM</span></div>
+          <div class="hours-row"><span class="day">Saturday</span><span class="time">11:00 AM &ndash; 10:00 PM</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span class="time">12:00 PM &ndash; 9:00 PM</span></div>
+          <p style="font-size:.8rem;color:var(--gray);margin-top:1rem;">&#9432; Hours may vary — call ahead or check for updates. Closed November through February.</p>
+        </div>
+
+        <!-- Google Map Embed -->
+        <div class="map-embed">
+          <iframe
+            title="Mrs. Curl Location Map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3077.5!2d-86.106!3d39.613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886b5b2b85a2a3d7%3A0xb8a1b2e4c5d6e7f8!2s259+S+Meridian+St%2C+Greenwood%2C+IN+46143!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+            width="100%"
+            height="300"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <p style="text-align:center;margin-top:.6rem;">
+          <a class="btn btn-teal" style="font-size:.85rem;padding:.55rem 1.4rem;" href="https://maps.google.com/?q=259+S+Meridian+St+Greenwood+IN+46143" target="_blank" rel="noopener">Open in Google Maps</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUICK MESSAGE FORM -->
+<section class="section">
+  <div class="container-sm">
+    <div style="text-align:center;margin-bottom:2rem;">
+      <span class="section-label">Say Hello</span>
+      <h2 class="section-title" style="text-align:center;">Send Us a Message</h2>
+      <div class="divider center"></div>
+      <p style="color:var(--gray);">Have a question, feedback, or just want to share how much you love your cone? We'd love to hear from you!</p>
+    </div>
+    <form action="mailto:minicurlevents@gmail.com" method="get" enctype="text/plain"
+          style="background:var(--white);border-radius:16px;padding:2.5rem;box-shadow:0 4px 18px rgba(0,0,0,.08);">
+      <div class="grid-2" style="gap:1rem;">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="name" placeholder="Your first name" required/>
+        </div>
+        <div class="form-group">
+          <label for="femail">Email Address</label>
+          <input type="email" id="femail" name="email" placeholder="you@example.com" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fsubject">Subject</label>
+        <select id="fsubject" name="subject">
+          <option>General Question</option>
+          <option>Ice Cream Truck / Mini Curl</option>
+          <option>Menu Question</option>
+          <option>Employment</option>
+          <option>Feedback / Compliment</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="fmessage">Message</label>
+        <textarea id="fmessage" name="body" placeholder="Write your message here..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-teal" style="width:100%;font-size:1rem;padding:.85rem;">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<div class="info-strip">
+  <div class="info-grid">
+    <div class="info-item"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><strong>259 S. Meridian St.</strong><span>Greenwood, IN 46143</span></div>
+    <div class="info-item"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 17.92z"/></svg></div><strong>(317) 882-1031</strong><span>Call during business hours</span></div>
+    <div class="info-item"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><strong>Open March &ndash; Oct.</strong><span>Seasonal business</span></div>
+    <div class="info-item"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><strong>Downtown Greenwood</strong><span>Near parks &amp; library</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">Mrs. Curl Ice Cream Shop &amp; Outdoor Café</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a>
+    <a href="photogallery.html">Memories</a>
+    <a href="icecreamtruck.html">Ice Cream Truck</a><a href="contact.html">Contact</a>
+  </div>
+  <p>259 S. Meridian Street, Greenwood, IN 46143 &bull; <a href="tel:3178821031">(317) 882-1031</a> &bull; <a href="https://www.greenwood.in.gov/" target="_blank" rel="noopener">Visit Greenwood</a></p>
+  <p class="copy">&copy; 2026 Mrs. Curl Ice Cream Shop. All rights reserved.</p></footer>
+
+<script defer src="animations.js"></script>
+<script>
+  // Nav shadow on scroll
+  (function(){
+    var nav = document.querySelector('.site-nav');
+    if (!nav) return;
+    window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 10); }, {passive:true});
+  })();
+</script><script src="chatbot.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
