@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -7,64 +7,99 @@
   <title>Memories | Mrs. Curl Ice Cream Shop</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    .filter-bar {
-      display: flex;
-      gap: .6rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
+    /* ── Section carousels ── */
+    .mem-section { margin-bottom: 3.5rem; }
+
+    .mem-section-header {
+      display: flex; align-items: baseline;
+      justify-content: space-between; margin-bottom: .9rem;
     }
-    .filter-btn {
-      background: var(--white);
-      border: 2px solid var(--cream-mid);
-      color: var(--gray);
-      padding: .4rem 1.1rem;
-      border-radius: 99px;
-      font-size: .85rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all .2s;
-      font-family: inherit;
+    .mem-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem; letter-spacing: 3px;
+      color: var(--chocolate); margin: 0;
     }
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--teal);
-      border-color: var(--teal);
-      color: var(--white);
+    .mem-counter {
+      font-size: .82rem; color: var(--gray);
+      font-family: 'Fredoka One', cursive;
     }
 
-    /* lightbox overlay */
+    .mem-carousel-wrap {
+      position: relative; display: flex;
+      align-items: center; gap: .6rem;
+    }
+    .mem-viewport {
+      flex: 1; overflow: hidden;
+      border: 3px solid var(--chocolate);
+      box-shadow: 5px 5px 0 var(--chocolate);
+      border-radius: 2px;
+    }
+    .mem-track {
+      display: flex;
+      transition: transform .38s cubic-bezier(.4,0,.2,1);
+    }
+    .mem-slide {
+      flex-shrink: 0; width: 100%;
+      cursor: pointer; position: relative;
+      aspect-ratio: 4 / 3; background: var(--cream-mid);
+    }
+    .mem-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      pointer-events: none;
+    }
+    .mem-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(44,21,3,.62);
+      color: #fff; padding: .45rem 1rem;
+      font-size: .83rem; font-family: 'Fredoka One', cursive;
+      letter-spacing: .5px;
+    }
+
+    .mem-btn {
+      background: var(--chocolate); color: var(--gold);
+      border: none; width: 42px; height: 42px; flex-shrink: 0;
+      font-size: 1.2rem; cursor: pointer; border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 3px 3px 0 rgba(0,0,0,.25);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .mem-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 rgba(0,0,0,.25); }
+
+    .mem-dots {
+      display: flex; justify-content: center;
+      gap: .45rem; margin-top: .7rem;
+    }
+    .mem-dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--cream-mid); border: 2px solid var(--chocolate);
+      cursor: pointer; padding: 0; transition: background .2s;
+    }
+    .mem-dot.active { background: var(--cherry); border-color: var(--cherry); }
+
+    /* lightbox */
     .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.85);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.88); z-index: 1000;
+      align-items: center; justify-content: center; padding: 2rem;
     }
     .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 85vh;
-      border-radius: 8px;
-      object-fit: contain;
-    }
+    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 6px; object-fit: contain; }
     .lightbox-close {
-      position: absolute;
-      top: 1.5rem; right: 2rem;
-      color: white; font-size: 2rem;
-      cursor: pointer; background: none; border: none;
-      line-height: 1;
+      position: absolute; top: 1.5rem; right: 2rem;
+      color: white; font-size: 2.2rem; cursor: pointer;
+      background: none; border: none; line-height: 1;
     }
     .lightbox-caption {
-      position: absolute;
-      bottom: 2rem; left: 50%;
+      position: absolute; bottom: 2rem; left: 50%;
       transform: translateX(-50%);
-      background: rgba(0,0,0,.6);
-      color: white; padding: .5rem 1.2rem;
-      border-radius: 99px; font-size: .88rem;
-      white-space: nowrap;
+      background: rgba(0,0,0,.6); color: white;
+      padding: .5rem 1.4rem; border-radius: 99px;
+      font-size: .88rem; white-space: nowrap;
+    }
+
+    @media (max-width: 500px) {
+      .mem-btn { width: 34px; height: 34px; font-size: 1rem; }
     }
   </style>
 </head>
@@ -124,122 +159,171 @@
     <h2 class="section-title">A Scoop of Nostalgia</h2>
     <div class="divider"></div>
 
-    <div class="filter-bar">
-      <button class="filter-btn active" data-filter="mrscurl" onclick="filterGallery(this,'mrscurl')">Mrs. Curl</button>
-      <button class="filter-btn" data-filter="seating" onclick="filterGallery(this,'seating')">Seating</button>
-      <button class="filter-btn" data-filter="lake" onclick="filterGallery(this,'lake')">Lake</button>
-      <button class="filter-btn" data-filter="food" onclick="filterGallery(this,'food')">Ice Cream &amp; Food</button>
+    <!-- ── Mrs. Curl ── -->
+    <div class="mem-section" data-animate="fade-up">
+      <div class="mem-section-header">
+        <h3 class="mem-title">Mrs. Curl</h3>
+        <span class="mem-counter" id="counter-mrscurl">1 / 7</span>
+      </div>
+      <div class="mem-carousel-wrap">
+        <button class="mem-btn" aria-label="Previous" onclick="memMove('mrscurl',-1)">&#8592;</button>
+        <div class="mem-viewport">
+          <div class="mem-track" id="track-mrscurl">
+            <div class="mem-slide" onclick="openLightbox('images/Curl 1.webp','Mrs. Curl Sign')">
+              <img src="images/Curl 1.webp" alt="Mrs. Curl Sign" loading="lazy"/>
+              <div class="mem-caption">Mrs. Curl Sign</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (1).webp','Storefront')">
+              <img src="images/unnamed (1).webp" alt="Storefront" loading="lazy"/>
+              <div class="mem-caption">Storefront</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (2).webp','Exterior')">
+              <img src="images/unnamed (2).webp" alt="Exterior" loading="lazy"/>
+              <div class="mem-caption">Exterior</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (5).webp','From the Street')">
+              <img src="images/unnamed (5).webp" alt="From the Street" loading="lazy"/>
+              <div class="mem-caption">From the Street</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (6).webp','Jukebox Wall Art')">
+              <img src="images/unnamed (6).webp" alt="Jukebox Wall Art" loading="lazy"/>
+              <div class="mem-caption">Jukebox Wall Art</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (12).webp','A Busy Day')">
+              <img src="images/unnamed (12).webp" alt="A Busy Day" loading="lazy"/>
+              <div class="mem-caption">A Busy Day</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (14).webp','Our Sign')">
+              <img src="images/unnamed (14).webp" alt="Our Sign" loading="lazy"/>
+              <div class="mem-caption">Our Sign</div>
+            </div>
+          </div>
+        </div>
+        <button class="mem-btn" aria-label="Next" onclick="memMove('mrscurl',1)">&#8594;</button>
+      </div>
+      <div class="mem-dots" id="dots-mrscurl"></div>
     </div>
 
-    <div class="gallery-grid" id="gallery">
-
-      <!-- Mrs. Curl -->
-      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/Curl 1.webp','Mrs. Curl Sign')">
-        <img src="images/Curl 1.webp" alt="Mrs. Curl Sign"/>
-        <div class="gallery-caption">Mrs. Curl Sign</div>
+    <!-- ── Seating ── -->
+    <div class="mem-section" data-animate="fade-up">
+      <div class="mem-section-header">
+        <h3 class="mem-title">Seating</h3>
+        <span class="mem-counter" id="counter-seating">1 / 5</span>
       </div>
-      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (1).webp','Storefront')">
-        <img src="images/unnamed (1).webp" alt="Mrs. Curl Storefront"/>
-        <div class="gallery-caption">Storefront</div>
+      <div class="mem-carousel-wrap">
+        <button class="mem-btn" aria-label="Previous" onclick="memMove('seating',-1)">&#8592;</button>
+        <div class="mem-viewport">
+          <div class="mem-track" id="track-seating">
+            <div class="mem-slide" onclick="openLightbox('images/Gazibo.webp','The Gazebo')">
+              <img src="images/Gazibo.webp" alt="The Gazebo" loading="lazy"/>
+              <div class="mem-caption">The Gazebo</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/curl 2.webp','Covered Seating')">
+              <img src="images/curl 2.webp" alt="Covered Seating" loading="lazy"/>
+              <div class="mem-caption">Covered Seating</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (9).webp','Outdoor Tables')">
+              <img src="images/unnamed (9).webp" alt="Outdoor Tables" loading="lazy"/>
+              <div class="mem-caption">Outdoor Tables</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (10).webp','Garden Pergola')">
+              <img src="images/unnamed (10).webp" alt="Garden Pergola" loading="lazy"/>
+              <div class="mem-caption">Garden Pergola</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (13).webp','Family Seating')">
+              <img src="images/unnamed (13).webp" alt="Family Seating" loading="lazy"/>
+              <div class="mem-caption">Family Seating</div>
+            </div>
+          </div>
+        </div>
+        <button class="mem-btn" aria-label="Next" onclick="memMove('seating',1)">&#8594;</button>
       </div>
-      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (2).webp','Mrs. Curl Exterior')">
-        <img src="images/unnamed (2).webp" alt="Mrs. Curl Exterior"/>
-        <div class="gallery-caption">Exterior</div>
-      </div>
-      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (5).webp','Mrs. Curl from the Street')">
-        <img src="images/unnamed (5).webp" alt="Mrs. Curl from the Street"/>
-        <div class="gallery-caption">From the Street</div>
-      </div>
-      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (6).webp','Jukebox Wall Art')">
-        <img src="images/unnamed (6).webp" alt="Jukebox Wall Art"/>
-        <div class="gallery-caption">Jukebox Wall Art</div>
-      </div>
-      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (12).webp','A Busy Day at Mrs. Curl')">
-        <img src="images/unnamed (12).webp" alt="Busy Day at Mrs. Curl"/>
-        <div class="gallery-caption">A Busy Day</div>
-      </div>
-      <div class="gallery-item" data-cat="mrscurl" onclick="openLightbox('images/unnamed (14).webp','Mrs. Curl Mascot Sign')">
-        <img src="images/unnamed (14).webp" alt="Mrs. Curl Mascot Sign"/>
-        <div class="gallery-caption">Our Sign</div>
-      </div>
-
-      <!-- Seating -->
-      <div class="gallery-item" data-cat="seating" style="display:none" onclick="openLightbox('images/Gazibo.webp','The Gazebo')">
-        <img src="images/Gazibo.webp" alt="The Gazebo"/>
-        <div class="gallery-caption">The Gazebo</div>
-      </div>
-      <div class="gallery-item" data-cat="seating" style="display:none" onclick="openLightbox('images/curl 2.webp','Covered Seating Area')">
-        <img src="images/curl 2.webp" alt="Covered Seating Area"/>
-        <div class="gallery-caption">Covered Seating</div>
-      </div>
-      <div class="gallery-item" data-cat="seating" style="display:none" onclick="openLightbox('images/unnamed (9).webp','Outdoor Tables')">
-        <img src="images/unnamed (9).webp" alt="Outdoor Tables"/>
-        <div class="gallery-caption">Outdoor Tables</div>
-      </div>
-      <div class="gallery-item" data-cat="seating" style="display:none" onclick="openLightbox('images/unnamed (10).webp','Garden Pergola')">
-        <img src="images/unnamed (10).webp" alt="Garden Pergola"/>
-        <div class="gallery-caption">Garden Pergola</div>
-      </div>
-      <div class="gallery-item" data-cat="seating" style="display:none" onclick="openLightbox('images/unnamed (13).webp','Family Seating Area')">
-        <img src="images/unnamed (13).webp" alt="Family Seating Area"/>
-        <div class="gallery-caption">Family Seating</div>
-      </div>
-
-      <!-- Lake -->
-      <div class="gallery-item" data-cat="lake" style="display:none" onclick="openLightbox('images/unnamed.webp','The Stream &amp; Garden')">
-        <img src="images/unnamed.webp" alt="The Stream and Garden"/>
-        <div class="gallery-caption">The Stream &amp; Garden</div>
-      </div>
-      <div class="gallery-item" data-cat="lake" style="display:none" onclick="openLightbox('images/unnamed (4).webp','Ducks on the Stream')">
-        <img src="images/unnamed (4).webp" alt="Ducks on the Stream"/>
-        <div class="gallery-caption">Ducks on the Stream</div>
-      </div>
-
-      <!-- Ice Cream & Food -->
-      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/unnamed (7).webp','Flavor Burst Soft Serve')">
-        <img src="images/unnamed (7).webp" alt="Flavor Burst Soft Serve"/>
-        <div class="gallery-caption">Flavor Burst Soft Serve</div>
-      </div>
-      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/Flavor Burst Waffle Cone.webp','Flavor Burst Waffle Cone')">
-        <img src="images/Flavor Burst Waffle Cone.webp" alt="Flavor Burst Waffle Cone"/>
-        <div class="gallery-caption">Flavor Burst Waffle Cone</div>
-      </div>
-      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/Twist Cone and Chocolate Dipped Cone.webp','Twist &amp; Chocolate Dipped')">
-        <img src="images/Twist Cone and Chocolate Dipped Cone.webp" alt="Twist and Chocolate Dipped Cone"/>
-        <div class="gallery-caption">Twist &amp; Chocolate Dipped</div>
-      </div>
-      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/Upside down Chocolate Dipped Cone.webp','Upside Down Dipped Cone')">
-        <img src="images/Upside down Chocolate Dipped Cone.webp" alt="Upside Down Chocolate Dipped Cone"/>
-        <div class="gallery-caption">Upside Down Dipped Cone</div>
-      </div>
-      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/Crunch Cone.webp','Crunch Cone')">
-        <img src="images/Crunch Cone.webp" alt="Crunch Cone"/>
-        <div class="gallery-caption">Crunch Cone</div>
-      </div>
-      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/Birthday Cake Razzle.webp','Birthday Cake Razzle')">
-        <img src="images/Birthday Cake Razzle.webp" alt="Birthday Cake Razzle"/>
-        <div class="gallery-caption">Birthday Cake Razzle</div>
-      </div>
-      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/M&M Razzle.webp','M&amp;M Razzle')">
-        <img src="images/M&M Razzle.webp" alt="M&M Razzle"/>
-        <div class="gallery-caption">M&amp;M Razzle</div>
-      </div>
-      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/unnamed (3).webp','Ice Cream Sundae')">
-        <img src="images/unnamed (3).webp" alt="Ice Cream Sundae"/>
-        <div class="gallery-caption">Ice Cream Sundae</div>
-      </div>
-      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/unnamed (11).webp','Malts, Shakes &amp; Sundaes')">
-        <img src="images/unnamed (11).webp" alt="Malts Shakes and Sundaes"/>
-        <div class="gallery-caption">Malts, Shakes &amp; Sundaes</div>
-      </div>
-      <div class="gallery-item" data-cat="food" style="display:none" onclick="openLightbox('images/unnamed (8).webp','Fresh-Cut Fries')">
-        <img src="images/unnamed (8).webp" alt="Fresh-Cut Fries"/>
-        <div class="gallery-caption">Fresh-Cut Fries</div>
-      </div>
-
+      <div class="mem-dots" id="dots-seating"></div>
     </div>
 
-    <p style="text-align:center;margin-top:2.5rem;color:var(--gray);font-size:.9rem;">
+    <!-- ── Lake ── -->
+    <div class="mem-section" data-animate="fade-up">
+      <div class="mem-section-header">
+        <h3 class="mem-title">Lake</h3>
+        <span class="mem-counter" id="counter-lake">1 / 2</span>
+      </div>
+      <div class="mem-carousel-wrap">
+        <button class="mem-btn" aria-label="Previous" onclick="memMove('lake',-1)">&#8592;</button>
+        <div class="mem-viewport">
+          <div class="mem-track" id="track-lake">
+            <div class="mem-slide" onclick="openLightbox('images/unnamed.webp','The Stream &amp; Garden')">
+              <img src="images/unnamed.webp" alt="The Stream and Garden" loading="lazy"/>
+              <div class="mem-caption">The Stream &amp; Garden</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (4).webp','Ducks on the Stream')">
+              <img src="images/unnamed (4).webp" alt="Ducks on the Stream" loading="lazy"/>
+              <div class="mem-caption">Ducks on the Stream</div>
+            </div>
+          </div>
+        </div>
+        <button class="mem-btn" aria-label="Next" onclick="memMove('lake',1)">&#8594;</button>
+      </div>
+      <div class="mem-dots" id="dots-lake"></div>
+    </div>
+
+    <!-- ── Ice Cream & Food ── -->
+    <div class="mem-section" data-animate="fade-up">
+      <div class="mem-section-header">
+        <h3 class="mem-title">Ice Cream &amp; Food</h3>
+        <span class="mem-counter" id="counter-food">1 / 10</span>
+      </div>
+      <div class="mem-carousel-wrap">
+        <button class="mem-btn" aria-label="Previous" onclick="memMove('food',-1)">&#8592;</button>
+        <div class="mem-viewport">
+          <div class="mem-track" id="track-food">
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (7).webp','Flavor Burst Soft Serve')">
+              <img src="images/unnamed (7).webp" alt="Flavor Burst Soft Serve" loading="lazy"/>
+              <div class="mem-caption">Flavor Burst Soft Serve</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/Flavor Burst Waffle Cone.webp','Flavor Burst Waffle Cone')">
+              <img src="images/Flavor Burst Waffle Cone.webp" alt="Flavor Burst Waffle Cone" loading="lazy"/>
+              <div class="mem-caption">Flavor Burst Waffle Cone</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/Twist Cone and Chocolate Dipped Cone.webp','Twist &amp; Chocolate Dipped')">
+              <img src="images/Twist Cone and Chocolate Dipped Cone.webp" alt="Twist and Chocolate Dipped" loading="lazy"/>
+              <div class="mem-caption">Twist &amp; Chocolate Dipped</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/Upside down Chocolate Dipped Cone.webp','Upside Down Dipped Cone')">
+              <img src="images/Upside down Chocolate Dipped Cone.webp" alt="Upside Down Dipped Cone" loading="lazy"/>
+              <div class="mem-caption">Upside Down Dipped Cone</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/Crunch Cone.webp','Crunch Cone')">
+              <img src="images/Crunch Cone.webp" alt="Crunch Cone" loading="lazy"/>
+              <div class="mem-caption">Crunch Cone</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/Birthday Cake Razzle.webp','Birthday Cake Razzle')">
+              <img src="images/Birthday Cake Razzle.webp" alt="Birthday Cake Razzle" loading="lazy"/>
+              <div class="mem-caption">Birthday Cake Razzle</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/M&M Razzle.webp','M&amp;M Razzle')">
+              <img src="images/M&M Razzle.webp" alt="M&M Razzle" loading="lazy"/>
+              <div class="mem-caption">M&amp;M Razzle</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (3).webp','Ice Cream Sundae')">
+              <img src="images/unnamed (3).webp" alt="Ice Cream Sundae" loading="lazy"/>
+              <div class="mem-caption">Ice Cream Sundae</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (11).webp','Malts, Shakes &amp; Sundaes')">
+              <img src="images/unnamed (11).webp" alt="Malts Shakes Sundaes" loading="lazy"/>
+              <div class="mem-caption">Malts, Shakes &amp; Sundaes</div>
+            </div>
+            <div class="mem-slide" onclick="openLightbox('images/unnamed (8).webp','Fresh-Cut Fries')">
+              <img src="images/unnamed (8).webp" alt="Fresh-Cut Fries" loading="lazy"/>
+              <div class="mem-caption">Fresh-Cut Fries</div>
+            </div>
+          </div>
+        </div>
+        <button class="mem-btn" aria-label="Next" onclick="memMove('food',1)">&#8594;</button>
+      </div>
+      <div class="mem-dots" id="dots-food"></div>
+    </div>
+
+    <p style="text-align:center;margin-top:1rem;color:var(--gray);font-size:.9rem;">
       Have a great photo from your visit? Tag us or send it to <a href="https://mail.google.com/mail/?view=cm&to=minicurlevents@gmail.com">minicurlevents@gmail.com</a> and we may feature it here!
     </p>
   </div>
@@ -269,60 +353,89 @@
     <a href="icecreamtruck.html">Ice Cream Truck</a><a href="contact.html">Contact</a>
   </div>
   <p>259 S. Meridian Street, Greenwood, IN 46143 &bull; <a href="tel:3178821031">(317) 882-1031</a></p>
-  <p class="copy">&copy; 2026 Mrs. Curl Ice Cream Shop. All rights reserved.</p></footer>
+  <p class="copy">&copy; 2026 Mrs. Curl Ice Cream Shop. All rights reserved.</p>
+</footer>
 
 <script>
-  function filterGallery(btn, cat) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.style.display = item.dataset.cat === cat ? '' : 'none';
-    });
+  // ── Carousel state ──────────────────────────────────────────────────────────
+  var memIdx = { mrscurl: 0, seating: 0, lake: 0, food: 0 };
+
+  function initDots(id) {
+    var track = document.getElementById('track-' + id);
+    var count = track.children.length;
+    var container = document.getElementById('dots-' + id);
+    container.innerHTML = '';
+    for (var i = 0; i < count; i++) {
+      var d = document.createElement('button');
+      d.className = 'mem-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Slide ' + (i+1));
+      d.dataset.idx = i;
+      d.dataset.id = id;
+      d.onclick = function() { memGoTo(this.dataset.id, parseInt(this.dataset.idx)); };
+      container.appendChild(d);
+    }
   }
+
+  function updateCarousel(id) {
+    var track = document.getElementById('track-' + id);
+    var count = track.children.length;
+    var idx = memIdx[id];
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    document.getElementById('counter-' + id).textContent = (idx + 1) + ' / ' + count;
+    var dots = document.getElementById('dots-' + id).children;
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('active', i === idx);
+    }
+  }
+
+  function memMove(id, dir) {
+    var count = document.getElementById('track-' + id).children.length;
+    memIdx[id] = (memIdx[id] + dir + count) % count;
+    updateCarousel(id);
+  }
+
+  function memGoTo(id, idx) {
+    memIdx[id] = idx;
+    updateCarousel(id);
+  }
+
+  // ── Touch / swipe support ───────────────────────────────────────────────────
+  document.querySelectorAll('.mem-viewport').forEach(function(vp) {
+    var startX = 0;
+    var id = vp.querySelector('.mem-track').id.replace('track-', '');
+    vp.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+    vp.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) memMove(id, diff > 0 ? 1 : -1);
+    });
+  });
+
+  // ── Lightbox ─────────────────────────────────────────────────────────────────
   function openLightbox(src, caption) {
-    const lb = document.getElementById('lightbox');
     document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox-caption').textContent = caption;
-    lb.classList.add('open');
+    document.getElementById('lightbox-caption').innerHTML = caption;
+    document.getElementById('lightbox').classList.add('open');
   }
   function closeLightbox(e) {
     if (e.target === document.getElementById('lightbox')) {
       document.getElementById('lightbox').classList.remove('open');
     }
   }
-  document.addEventListener('keydown', e => {
+  document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
   });
+
+  // ── Init all carousels ───────────────────────────────────────────────────────
+  ['mrscurl','seating','lake','food'].forEach(function(id) { initDots(id); });
 </script>
 <script defer src="animations.js"></script>
 <script>
-  // Nav shadow on scroll
   (function(){
     var nav = document.querySelector('.site-nav');
     if (!nav) return;
     window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 10); }, {passive:true});
   })();
-</script><script src="chatbot.js"></script>
+</script>
+<script src="chatbot.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
